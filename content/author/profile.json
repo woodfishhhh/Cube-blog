@@ -1,0 +1,33 @@
+{
+  "displayName": "木鱼",
+  "siteTitle": "木鱼",
+  "introduction": "你好，很高兴认识你👋",
+  "headline": "是一名 学生 / 电子音乐制作人 / 算法爱好者",
+  "slogan": "源于热爱，去感受",
+  "avatarUrl": "https://pic1.imgdb.cn/item/682f3d1658cb8da5c807b704.jpg",
+  "location": "中国，南昌市",
+  "birthYear": 2006,
+  "university": "江西财经大学",
+  "major": "计算机科学与技术",
+  "occupation": "大一学生",
+  "profileTags": [
+    "🤖️ 数码科技爱好者",
+    "🔍 分享与热心帮助",
+    "🏠 我是鱼唇大学生",
+    "🔨 前端开发正在学",
+    "学习算法和音乐 🤝",
+    "脚踏实地行动派 🏃",
+    "团队小组发动机 🧱",
+    "电子音乐制作人 🎧"
+  ],
+  "focusAreas": [
+    "学习",
+    "生活",
+    "程序",
+    "体验"
+  ],
+  "source": {
+    "sourceRoot": "blog",
+    "sourcePath": "source/_data/about.yml"
+  }
+}
