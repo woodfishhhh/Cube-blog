@@ -15,17 +15,39 @@ export function parseMarkdownDocument(raw: string): ParsedMarkdownDocument {
   }
 
   const frontmatter = parseFrontmatterBlock(match[1]);
-  const body = raw.slice(match[0].length).trim();
+  const rawBody = raw.slice(match[0].length).trim();
 
   if (!frontmatter.title || !frontmatter.date) {
     throw new Error("Markdown frontmatter must include title and date.");
   }
+
+  const body = normalizeArticleMarkdownBody(rawBody, frontmatter.title);
 
   return {
     body,
     excerpt: deriveExcerpt(body),
     frontmatter,
   };
+}
+
+export function normalizeArticleMarkdownBody(body: string, title: string): string {
+  const headingMatch = body.match(/^#\s+(.+?)\r?\n+/);
+
+  if (!headingMatch) {
+    return body;
+  }
+
+  if (headingMatch[1].trim() !== title.trim()) {
+    return body;
+  }
+
+  let normalizedBody = body.slice(headingMatch[0].length).trimStart();
+
+  if (normalizedBody.startsWith("---")) {
+    normalizedBody = normalizedBody.slice(3).trimStart();
+  }
+
+  return normalizedBody;
 }
 
 function parseFrontmatterBlock(block: string): RawPostFrontmatter {

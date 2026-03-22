@@ -106,6 +106,7 @@ export type InputDecision =
         | "drag-requires-focus"
         | "ui-cannot-drag-focus"
         | "panel-scroll-not-at-boundary"
+        | "article-reading-locks-home-gestures"
         | "scene-event-only";
     };
 

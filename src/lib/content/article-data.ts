@@ -3,6 +3,10 @@ import { loadLaunchPostSource, type LaunchPostSourcePayload, listLaunchPosts } f
 import { parseMarkdownDocument } from "@/lib/content/markdown";
 import type { ArticleData, ContentLookupResult } from "@/lib/content/types";
 
+export type ArticleRouteParams = {
+  slug: string;
+};
+
 export async function getArticleDataBySlug(
   slug: string,
 ): Promise<ContentLookupResult<ArticleData>> {
@@ -18,8 +22,12 @@ export async function getArticleDataBySlug(
   };
 }
 
-export function getAllArticleSlugs(): { slug: string }[] {
+export function getArticleStaticParams(): ArticleRouteParams[] {
   return listLaunchPosts().map((entry) => ({ slug: entry.slug }));
+}
+
+export function getAllArticleSlugs(): ArticleRouteParams[] {
+  return getArticleStaticParams();
 }
 
 function mapLaunchPostToArticle(payload: LaunchPostSourcePayload): ArticleData {

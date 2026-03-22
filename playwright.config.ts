@@ -11,13 +11,30 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "npm run dev",
+    command: "npm run build && npm run start -- --hostname 127.0.0.1 --port 3000",
+    timeout: 180000,
     url: `http://127.0.0.1:${PORT}`,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
   },
   projects: [
     {
-      name: "chromium",
+      name: "desktop-chromium",
+      testMatch: ["**/home.spec.ts", "**/article.spec.ts"],
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "mobile-chromium",
+      testMatch: "**/mobile.spec.ts",
+      use: { ...devices["iPhone 13"] },
+    },
+    {
+      name: "reduced-motion",
+      testMatch: "**/home.spec.ts",
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "no-webgl",
+      testMatch: "**/fallback.spec.ts",
       use: { ...devices["Desktop Chrome"] },
     },
   ],

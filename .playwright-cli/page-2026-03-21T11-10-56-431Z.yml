@@ -1,0 +1,286 @@
+- generic [ref=e1]:
+  - generic [ref=e2]: SCENE HOST
+  - generic:
+    - banner [ref=e4]:
+      - generic "WOODFISH brand" [ref=e5]:
+        - generic [ref=e7]: WOODFISH
+      - navigation "Primary" [ref=e8]:
+        - button "博客" [active] [ref=e10] [cursor=pointer]
+        - generic [ref=e11]:
+          - generic [ref=e12]: /
+          - button "作者" [ref=e13] [cursor=pointer]
+    - main "Homepage editorial shell" [ref=e15]:
+      - region "WOODFISH immersive notes" [ref=e17]:
+        - generic [ref=e18]:
+          - paragraph [ref=e19]: Curated launch set
+          - heading "WOODFISH immersive notes" [level=1] [ref=e20]
+          - paragraph [ref=e21]: A monochrome reading room for curated engineering notes, computer science study, and quietly atmospheric experimentation.
+      - region "Homepage overview panels" [ref=e39]:
+        - generic [ref=e40]:
+          - region "Selected Writing" [ref=e41]:
+            - generic [ref=e42]:
+              - paragraph [ref=e43]: Manifest order
+              - heading "Selected Writing" [level=2] [ref=e44]
+              - paragraph [ref=e45]: Curated launch posts surfaced with date marks and taxonomy cues in the DOM-first foreground shell.
+            - generic [ref=e46]:
+              - article "JavaScript 学习笔记（1）：基础语法与数据类型" [ref=e47]:
+                - generic [ref=e48]:
+                  - generic [ref=e49]:
+                    - generic [ref=e50]: Published
+                    - generic [ref=e51]: Nov 03, 2025
+                  - generic [ref=e52]:
+                    - generic [ref=e53]: Taxonomy
+                    - list "JavaScript 学习笔记（1）：基础语法与数据类型 taxonomy" [ref=e54]:
+                      - listitem [ref=e55]: 前端开发
+                      - listitem [ref=e56]: JavaScript
+                      - listitem [ref=e57]: 数据类型
+                      - listitem [ref=e58]: HTML
+                      - listitem [ref=e59]: Java
+                - heading "JavaScript 学习笔记（1）：基础语法与数据类型" [level=3] [ref=e60]:
+                  - link "JavaScript 学习笔记（1）：基础语法与数据类型" [ref=e61] [cursor=pointer]:
+                    - /url: /posts/javascript-basics-and-data-types
+                - paragraph [ref=e62]: JavaScript 学习笔记（1）：基础语法与数据类型 了解变量、数据类型、运算符等基础概念，能够实现数据类型的转换，结合四则运算体会如何编程。 体会现实世界中的事物与计算机的关系 理解什么是数据并知道数据的分类 理解变量存储数据的“容器” 掌握常见运算符的使用，了解优先级关系 知道 JavaScript 数据类型隐
+              - article "Web API 学习笔记（1）：DOM 基础操作" [ref=e63]:
+                - generic [ref=e64]:
+                  - generic [ref=e65]:
+                    - generic [ref=e66]: Published
+                    - generic [ref=e67]: Nov 03, 2025
+                  - generic [ref=e68]:
+                    - generic [ref=e69]: Taxonomy
+                    - list "Web API 学习笔记（1）：DOM 基础操作 taxonomy" [ref=e70]:
+                      - listitem [ref=e71]: 前端开发
+                      - listitem [ref=e72]: Web API
+                      - listitem [ref=e73]: HTML
+                      - listitem [ref=e74]: JavaScript
+                      - listitem [ref=e75]: Java
+                - heading "Web API 学习笔记（1）：DOM 基础操作" [level=3] [ref=e76]:
+                  - link "Web API 学习笔记（1）：DOM 基础操作" [ref=e77] [cursor=pointer]:
+                    - /url: /posts/web-api-dom-basics
+                - paragraph [ref=e78]: Web API 学习笔记（1）：DOM 基础操作 复习： splice() 方法用于添加或删除数组中的元素。 注意： 这种方法会改变原始数组。 1. 删除数组： splice(起始位置， 删除的个数) 比如：1 javascript let arr = ['red', 'green', 'blue'] arr.spli
+              - article "AJAX 基础入门教程" [ref=e79]:
+                - generic [ref=e80]:
+                  - generic [ref=e81]:
+                    - generic [ref=e82]: Published
+                    - generic [ref=e83]: Dec 20, 2025
+                  - generic [ref=e84]:
+                    - generic [ref=e85]: Taxonomy
+                    - list "AJAX 基础入门教程 taxonomy" [ref=e86]:
+                      - listitem [ref=e87]: 前端开发
+                      - listitem [ref=e88]: AJAX
+                      - listitem [ref=e89]: AJAX基础
+                      - listitem [ref=e90]: axios
+                      - listitem [ref=e91]: HTTP请求
+                      - listitem [ref=e92]: 前后端通信
+                - heading "AJAX 基础入门教程" [level=3] [ref=e93]:
+                  - link "AJAX 基础入门教程" [ref=e94] [cursor=pointer]:
+                    - /url: /posts/ajax-basics-intro
+                - paragraph [ref=e95]: AJAX基础入门教程 核心概念 什么是AJAX？ AJAX就像是餐厅的"传菜员"，专门负责厨房（服务器）和餐桌（你的网页）之间的沟通。想象一下，如果没有传菜员，每次点菜都要你亲自跑到厨房去告诉厨师，然后等菜做好再端回来——这就是传统的网页刷新方式。 而有了AJAX这个"传菜员"，你只需要告诉它你要什么，它就会悄悄地去厨
+              - article "JavaScript 异步编程核心：AJAX、Promise 与 Async/Await" [ref=e96]:
+                - generic [ref=e97]:
+                  - generic [ref=e98]:
+                    - generic [ref=e99]: Published
+                    - generic [ref=e100]: Dec 27, 2025
+                  - generic [ref=e101]:
+                    - generic [ref=e102]: Taxonomy
+                    - list "JavaScript 异步编程核心：AJAX、Promise 与 Async/Await taxonomy" [ref=e103]:
+                      - listitem [ref=e104]: 前端开发
+                      - listitem [ref=e105]: JavaScript
+                      - listitem [ref=e106]: 异步编程
+                      - listitem [ref=e107]: AJAX
+                      - listitem [ref=e108]: Promise
+                      - listitem [ref=e109]: Async/Await
+                - heading "JavaScript 异步编程核心：AJAX、Promise 与 Async/Await" [level=3] [ref=e110]:
+                  - link "JavaScript 异步编程核心：AJAX、Promise 与 Async/Await" [ref=e111] [cursor=pointer]:
+                    - /url: /posts/javascript-async-core
+                - paragraph [ref=e112]: JavaScript 异步编程核心笔记（基于 Udemy 课程选集） 一、异步 JavaScript 基础（对应选集 246：Asynchronous JavaScript, AJAX and APIs） 1.1 异步编程概念 定义 ：JavaScript 是单线程语言，异步编程允许代码在等待某个操作（如网络请求、定时
+              - article "TypeScript 入门到实战笔记：安装、编译与类型系统" [ref=e113]:
+                - generic [ref=e114]:
+                  - generic [ref=e115]:
+                    - generic [ref=e116]: Published
+                    - generic [ref=e117]: Dec 31, 2025
+                  - generic [ref=e118]:
+                    - generic [ref=e119]: Taxonomy
+                    - list "TypeScript 入门到实战笔记：安装、编译与类型系统 taxonomy" [ref=e120]:
+                      - listitem [ref=e121]: 编程语言
+                      - listitem [ref=e122]: TypeScript
+                      - listitem [ref=e123]: tsc
+                      - listitem [ref=e124]: 类型系统
+                      - listitem [ref=e125]: 编译
+                      - listitem [ref=e126]: 开发环境
+                - heading "TypeScript 入门到实战笔记：安装、编译与类型系统" [level=3] [ref=e127]:
+                  - link "TypeScript 入门到实战笔记：安装、编译与类型系统" [ref=e128] [cursor=pointer]:
+                    - /url: /posts/typescript-practical-foundations
+                - paragraph [ref=e129]: TypeScript course outline.png 安装并使用 TypeScript 官网地址：https://www.typescriptlang.org/ 官方文档：https://www.typescriptlang.org/docs/ typescript homepage.png 环境配置 安装 Ty
+              - article "计算机网络应用层：DHCP、DNS、FTP 与 HTTP" [ref=e130]:
+                - generic [ref=e131]:
+                  - generic [ref=e132]:
+                    - generic [ref=e133]: Published
+                    - generic [ref=e134]: Dec 28, 2025
+                  - generic [ref=e135]:
+                    - generic [ref=e136]: Taxonomy
+                    - list "计算机网络应用层：DHCP、DNS、FTP 与 HTTP taxonomy" [ref=e137]:
+                      - listitem [ref=e138]: 计算机基础
+                      - listitem [ref=e139]: 计算机网络
+                      - listitem [ref=e140]: 应用层
+                      - listitem [ref=e141]: DHCP
+                      - listitem [ref=e142]: DNS
+                      - listitem [ref=e143]: FTP
+                      - listitem [ref=e144]: HTTP
+                - heading "计算机网络应用层：DHCP、DNS、FTP 与 HTTP" [level=3] [ref=e145]:
+                  - link "计算机网络应用层：DHCP、DNS、FTP 与 HTTP" [ref=e146] [cursor=pointer]:
+                    - /url: /posts/network-application-layer
+                - paragraph [ref=e147]: 第六章 应用层 6.1 应用层概述 应用层的定义 ：应用层是 OSI 体系结构的顶层，是离用户最近的一层，也是设计和建立计算机网络的最终目的。 主要任务 ：通过应用进程的交互来实现特定网络应用。 本章重点内容 ： 动态主机配置协议 (DHCP) 域名系统 (DNS) 文件传送协议 (FTP) 电子邮件 万维网 (HTT
+              - article "数据库系统基础：概念、发展阶段与数据模型" [ref=e148]:
+                - generic [ref=e149]:
+                  - generic [ref=e150]:
+                    - generic [ref=e151]: Published
+                    - generic [ref=e152]: Mar 14, 2026
+                  - generic [ref=e153]:
+                    - generic [ref=e154]: Taxonomy
+                    - list "数据库系统基础：概念、发展阶段与数据模型 taxonomy" [ref=e155]:
+                      - listitem [ref=e156]: 数据库
+                      - listitem [ref=e157]: 数据库原理
+                      - listitem [ref=e158]: 数据库系统
+                      - listitem [ref=e159]: DBMS
+                      - listitem [ref=e160]: 数据模型
+                      - listitem [ref=e161]: 数据独立性
+                - heading "数据库系统基础：概念、发展阶段与数据模型" [level=3] [ref=e162]:
+                  - link "数据库系统基础：概念、发展阶段与数据模型" [ref=e163] [cursor=pointer]:
+                    - /url: /posts/database-systems-foundations
+                - paragraph [ref=e164]: 数据库系统基础：概念、发展阶段与数据模型 一、核心基本概念（必考） 1. 数据 定义 ：描述事物的符号记录，是广义概念，包含数字、文本、图像、视频、语音、图形等。 2. 数据库（DB，Database） 定义 ：长期储存在计算机内、 有组织、可共享 的大量数据的集合。 核心特点 ：①长期存储 ②有组织 ③可共享（基本特
+              - article "SQL 基础：DDL、表定义与查询核心" [ref=e165]:
+                - generic [ref=e166]:
+                  - generic [ref=e167]:
+                    - generic [ref=e168]: Published
+                    - generic [ref=e169]: Mar 14, 2026
+                  - generic [ref=e170]:
+                    - generic [ref=e171]: Taxonomy
+                    - list "SQL 基础：DDL、表定义与查询核心 taxonomy" [ref=e172]:
+                      - listitem [ref=e173]: 数据库
+                      - listitem [ref=e174]: SQL
+                      - listitem [ref=e175]: DDL
+                      - listitem [ref=e176]: CREATE TABLE
+                      - listitem [ref=e177]: 完整性约束
+                      - listitem [ref=e178]: 模式
+                - heading "SQL 基础：DDL、表定义与查询核心" [level=3] [ref=e179]:
+                  - link "SQL 基础：DDL、表定义与查询核心" [ref=e180] [cursor=pointer]:
+                    - /url: /posts/sql-ddl-query-basics
+                - paragraph [ref=e181]: 一、SQL语言核心特点（选择/填空考点） 核心记住 前3个 ，高频考 高度非过程化 1. 综合统一：集数据定义、查询、操纵、控制于一体 2. 高度非过程化：只需说明“查什么”，无需指定“怎么查”，由DBMS完成执行路径 3. 面向集合的操作方式：操作对象/结果均为集合（表、视图等） 4. 语法简单且组合多样：基础语法简
+              - article "SQL 进阶：数据更新、空值处理与视图" [ref=e182]:
+                - generic [ref=e183]:
+                  - generic [ref=e184]:
+                    - generic [ref=e185]: Published
+                    - generic [ref=e186]: Mar 16, 2026
+                  - generic [ref=e187]:
+                    - generic [ref=e188]: Taxonomy
+                    - list "SQL 进阶：数据更新、空值处理与视图 taxonomy" [ref=e189]:
+                      - listitem [ref=e190]: 数据库
+                      - listitem [ref=e191]: SQL
+                      - listitem [ref=e192]: INSERT
+                      - listitem [ref=e193]: UPDATE
+                      - listitem [ref=e194]: DELETE
+                      - listitem [ref=e195]: 视图
+                - heading "SQL 进阶：数据更新、空值处理与视图" [level=3] [ref=e196]:
+                  - link "SQL 进阶：数据更新、空值处理与视图" [ref=e197] [cursor=pointer]:
+                    - /url: /posts/sql-advanced-updates-views
+                - paragraph [ref=e198]: SQL 进阶：数据更新、空值处理与视图 一、数据更新 数据更新包含 插入、修改、删除 三类核心操作，是SQL对表数据的基础操作，需严格匹配数据类型、遵守完整性约束。 1. 插入数据（INSERT） 核心语法 ： sql INSERT INTO <表名 (列1,列2,...,列n) VALUES (值1,值2,...,值
+              - article "计算机网络网络层：分组转发、IPv4 与路由选择" [ref=e199]:
+                - generic [ref=e200]:
+                  - generic [ref=e201]:
+                    - generic [ref=e202]: Published
+                    - generic [ref=e203]: Dec 14, 2025
+                  - generic [ref=e204]:
+                    - generic [ref=e205]: Taxonomy
+                    - list "计算机网络网络层：分组转发、IPv4 与路由选择 taxonomy" [ref=e206]:
+                      - listitem [ref=e207]: 计算机基础
+                      - listitem [ref=e208]: 计算机网络
+                      - listitem [ref=e209]: 网络层
+                      - listitem [ref=e210]: IPv4
+                      - listitem [ref=e211]: 分组转发
+                      - listitem [ref=e212]: 路由选择
+                      - listitem [ref=e213]: CIDR
+                - heading "计算机网络网络层：分组转发、IPv4 与路由选择" [level=3] [ref=e214]:
+                  - link "计算机网络网络层：分组转发、IPv4 与路由选择" [ref=e215] [cursor=pointer]:
+                    - /url: /posts/network-layer-ipv4-routing
+                - paragraph [ref=e216]: 计算机网络网络层：分组转发、IPv4 与路由选择 4.1 网络层概述 网络层是 OSI 体系结构自下而上的第三层，核心任务是将分组从源主机经多个网络和链路传输到目的主机，主要包含分组转发、路由选择两大功能，且能向上层提供两种服务。 4.1.1 分组转发和路由选择 1. 分组转发 ：路由器从某接口接收分组后，依据分组首部
+              - article "Codeforces 2162F Beautiful Intervals 题解（MEX 枚举思路）" [ref=e217]:
+                - generic [ref=e218]:
+                  - generic [ref=e219]:
+                    - generic [ref=e220]: Published
+                    - generic [ref=e221]: Dec 20, 2025
+                  - generic [ref=e222]:
+                    - generic [ref=e223]: Taxonomy
+                    - list "Codeforces 2162F Beautiful Intervals 题解（MEX 枚举思路） taxonomy" [ref=e224]:
+                      - listitem [ref=e225]: 算法题解
+                      - listitem [ref=e226]: Codeforces
+                      - listitem [ref=e227]: Codeforces 2162F
+                      - listitem [ref=e228]: MEX
+                      - listitem [ref=e229]: 区间问题
+                      - listitem [ref=e230]: 题解
+                - heading "Codeforces 2162F Beautiful Intervals 题解（MEX 枚举思路）" [level=3] [ref=e231]:
+                  - link "Codeforces 2162F Beautiful Intervals 题解（MEX 枚举思路）" [ref=e232] [cursor=pointer]:
+                    - /url: /posts/codeforces-2162f-beautiful-intervals
+                - paragraph [ref=e233]: Codeforces 2162F Beautiful Intervals 题解（MEX 枚举思路） cf 1059 https://codeforces.com/contest/2162 涉及mex的题，一般会考虑枚举出现mex的地方
+              - article "C++ STL 到 JavaScript：常用数据结构映射速查" [ref=e234]:
+                - generic [ref=e235]:
+                  - generic [ref=e236]:
+                    - generic [ref=e237]: Published
+                    - generic [ref=e238]: Dec 24, 2025
+                  - generic [ref=e239]:
+                    - generic [ref=e240]: Taxonomy
+                    - list "C++ STL 到 JavaScript：常用数据结构映射速查 taxonomy" [ref=e241]:
+                      - listitem [ref=e242]: 编程语言
+                      - listitem [ref=e243]: JavaScript
+                      - listitem [ref=e244]: C++ STL
+                      - listitem [ref=e245]: Array
+                      - listitem [ref=e246]: Map
+                      - listitem [ref=e247]: 数据结构
+                - heading "C++ STL 到 JavaScript：常用数据结构映射速查" [level=3] [ref=e248]:
+                  - link "C++ STL 到 JavaScript：常用数据结构映射速查" [ref=e249] [cursor=pointer]:
+                    - /url: /posts/cpp-stl-to-javascript-mapping
+                - paragraph [ref=e250]: C++ STL 到 JavaScript：常用数据结构映射速查 C++ STL 与 JavaScript 的对应关系学习笔记 js // / // C++ STL 与 JavaScript 的对应关系学习笔记 // ========================================== // / // 1
+          - region "Author Profile" [ref=e251]:
+            - generic [ref=e252]:
+              - paragraph [ref=e253]: Profile layer
+              - heading "Author Profile" [level=2] [ref=e254]
+              - paragraph [ref=e255]: Selected fields from the internal author profile, normalized from the original about source and kept intentionally restrained.
+            - generic [ref=e256]:
+              - generic [ref=e257]:
+                - img "木鱼 portrait" [ref=e258]
+                - generic [ref=e259]:
+                  - paragraph [ref=e260]: 木鱼
+                  - paragraph [ref=e261]: 是一名 学生 / 电子音乐制作人 / 算法爱好者
+                  - paragraph [ref=e262]: 你好，很高兴认识你👋
+                  - paragraph [ref=e263]: 源于热爱，去感受
+              - generic [ref=e264]:
+                - generic [ref=e265]:
+                  - term [ref=e266]: Location
+                  - definition [ref=e267]: 中国，南昌市
+                - generic [ref=e268]:
+                  - term [ref=e269]: Occupation
+                  - definition [ref=e270]: 大一学生
+                - generic [ref=e271]:
+                  - term [ref=e272]: Study
+                  - definition [ref=e273]: 江西财经大学 · 计算机科学与技术
+              - generic [ref=e274]:
+                - generic [ref=e275]:
+                  - heading "Focus Areas" [level=3] [ref=e276]
+                  - list [ref=e277]:
+                    - listitem [ref=e278]: 学习
+                    - listitem [ref=e279]: 生活
+                    - listitem [ref=e280]: 程序
+                    - listitem [ref=e281]: 体验
+                - generic [ref=e282]:
+                  - heading "Signals" [level=3] [ref=e283]
+                  - list [ref=e284]:
+                    - listitem [ref=e285]: 🤖️ 数码科技爱好者
+                    - listitem [ref=e286]: 🔍 分享与热心帮助
+                    - listitem [ref=e287]: 🏠 我是鱼唇大学生
+                    - listitem [ref=e288]: 🔨 前端开发正在学
+                    - listitem [ref=e289]: 学习算法和音乐 🤝
+                    - listitem [ref=e290]: 脚踏实地行动派 🏃
+                    - listitem [ref=e291]: 团队小组发动机 🧱
+                    - listitem [ref=e292]: 电子音乐制作人 🎧
+  - button "Open Next.js Dev Tools" [ref=e27] [cursor=pointer]:
+    - img [ref=e28]
+  - alert [ref=e31]

@@ -3,7 +3,8 @@ import type { ReactNode } from "react";
 import { Archivo, Source_Serif_4 } from "next/font/google";
 
 import { AppShell } from "@/components/layout/AppShell";
-import { SceneViewport } from "@/components/scene/SceneViewport";
+import { SceneRouteBridge } from "@/components/scene/SceneRouteBridge";
+import { SceneViewportSlot } from "@/components/scene/SceneViewportSlot";
 
 import "./globals.css";
 
@@ -32,7 +33,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="zh-CN">
       <body className={`${uiFont.variable} ${editorialFont.variable}`}>
-        <SceneViewport />
+        <SceneViewportSlot />
+        <SceneRouteBridge />
         <AppShell>{children}</AppShell>
       </body>
     </html>

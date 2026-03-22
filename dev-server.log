@@ -123,3 +123,27 @@
 [browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
  GET / 200 in 230ms (next.js: 63ms, application-code: 168ms)
  GET /posts/not-a-real-post 404 in 56ms (next.js: 15ms, application-code: 41ms)
+ GET / 200 in 127ms (next.js: 25ms, application-code: 103ms)
+ GET / 200 in 47ms (next.js: 3ms, application-code: 44ms)
+ GET / 200 in 47ms (next.js: 3ms, application-code: 44ms)
+ GET / 200 in 54ms (next.js: 3ms, application-code: 52ms)
+ GET / 200 in 45ms (next.js: 2ms, application-code: 43ms)
+ GET / 200 in 52ms (next.js: 3ms, application-code: 49ms)
+ GET / 200 in 570ms (next.js: 159ms, application-code: 411ms)
+ GET / 200 in 98ms (next.js: 3ms, application-code: 95ms)
+⨯ Error: Jest worker encountered 2 child process exceptions, exceeding retry limit
+    at ignore-listed frames {
+  type: 'WorkerError',
+  page: '/posts/javascript-basics-and-data-types'
+}
+ GET / 200 in 3.9s (next.js: 2.6s, application-code: 1303ms)
+○ Compiling /_error ...
+ GET /posts/javascript-basics-and-data-types 500 in 8.3s (next.js: 8.2s, application-code: 140ms)
+[browser] Uncaught Error: Jest worker encountered 2 child process exceptions, exceeding retry limit
+⨯ Error: Jest worker encountered 2 child process exceptions, exceeding retry limit
+    at ignore-listed frames {
+  type: 'WorkerError',
+  page: '/posts/javascript-basics-and-data-types'
+}
+ GET /posts/javascript-basics-and-data-types 500 in 231ms (next.js: 185ms, application-code: 46ms)
+[?25h

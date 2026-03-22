@@ -5,6 +5,18 @@ import type {
 } from "@/lib/scene/state-types";
 import { assertNever } from "@/lib/scene/state-types";
 
+function blockArticleReadingHomeGesture(state: SceneState): InputDecision | null {
+  if (state.mode !== "article-reading") {
+    return null;
+  }
+
+  return {
+    allowed: false,
+    owner: "blocked" as const,
+    reason: "article-reading-locks-home-gestures" as const,
+  };
+}
+
 export function resolveInputIntent(
   state: SceneState,
   intent: SceneInputIntent,
@@ -45,6 +57,12 @@ export function resolveInputIntent(
       };
     }
     case "cube-focus-click": {
+      const articleReadingDecision = blockArticleReadingHomeGesture(state);
+
+      if (articleReadingDecision !== null) {
+        return articleReadingDecision;
+      }
+
       if (intent.origin === "ui") {
         return {
           allowed: false,
@@ -63,6 +81,12 @@ export function resolveInputIntent(
       };
     }
     case "panel-scroll-wheel": {
+      const articleReadingDecision = blockArticleReadingHomeGesture(state);
+
+      if (articleReadingDecision !== null) {
+        return articleReadingDecision;
+      }
+
       if (intent.boundary === "middle") {
         return {
           allowed: false,
@@ -93,6 +117,12 @@ export function resolveInputIntent(
       };
     }
     case "scene-wheel": {
+      const articleReadingDecision = blockArticleReadingHomeGesture(state);
+
+      if (articleReadingDecision !== null) {
+        return articleReadingDecision;
+      }
+
       return {
         allowed: true,
         owner: "scene",
@@ -104,6 +134,12 @@ export function resolveInputIntent(
       };
     }
     case "focus-drag": {
+      const articleReadingDecision = blockArticleReadingHomeGesture(state);
+
+      if (articleReadingDecision !== null) {
+        return articleReadingDecision;
+      }
+
       if (intent.origin === "ui") {
         return {
           allowed: false,

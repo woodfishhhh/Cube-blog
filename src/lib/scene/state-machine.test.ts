@@ -288,4 +288,48 @@ describe("resolveInputIntent", () => {
       },
     });
   });
+
+  it("blocks homepage wheel and focus intents while an article route is active", () => {
+    const articleState = transitionSceneState(createInitialSceneState("home-blog"), {
+      type: "article-entered",
+      origin: "route",
+      slug: "hello-world",
+    }).state;
+
+    expect(
+      resolveInputIntent(articleState, {
+        type: "scene-wheel",
+        origin: "scene",
+        direction: "forward",
+      }),
+    ).toEqual({
+      allowed: false,
+      owner: "blocked",
+      reason: "article-reading-locks-home-gestures",
+    });
+
+    expect(
+      resolveInputIntent(articleState, {
+        type: "panel-scroll-wheel",
+        origin: "ui",
+        direction: "forward",
+        boundary: "end",
+      }),
+    ).toEqual({
+      allowed: false,
+      owner: "blocked",
+      reason: "article-reading-locks-home-gestures",
+    });
+
+    expect(
+      resolveInputIntent(articleState, {
+        type: "cube-focus-click",
+        origin: "scene",
+      }),
+    ).toEqual({
+      allowed: false,
+      owner: "blocked",
+      reason: "article-reading-locks-home-gestures",
+    });
+  });
 });

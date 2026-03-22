@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
+import { mapAuthorProfileToHomeAuthorData } from "@/lib/content/author-map";
 import { formatPublishedDate } from "@/lib/content/date";
 import { listLaunchPosts, loadLaunchPostSource } from "@/lib/content/loaders";
 import { parseMarkdownDocument } from "@/lib/content/markdown";
@@ -22,16 +23,18 @@ const defaultHero: HomeHeroData = {
 };
 
 export async function getHomeData(): Promise<HomePageData> {
-  const [author, posts] = await Promise.all([
-    loadAuthorData(),
-    Promise.all(listLaunchPosts().map((entry) => loadPostCardData(entry.slug))),
-  ]);
+  const launchEntries = listLaunchPosts();
+  const [author, posts] = await Promise.all([loadAuthorData(), loadOrderedHomePostCards(launchEntries)]);
 
   return {
     hero: defaultHero,
     posts,
     author,
   };
+}
+
+async function loadOrderedHomePostCards(entries: readonly { slug: string }[]): Promise<HomePostCardData[]> {
+  return Promise.all(entries.map((entry) => loadPostCardData(entry.slug)));
 }
 
 async function loadPostCardData(slug: string): Promise<HomePostCardData> {
@@ -42,14 +45,16 @@ async function loadPostCardData(slug: string): Promise<HomePostCardData> {
   }
 
   const parsed = parseMarkdownDocument(result.value.raw);
+  const tags = normalizeTextList(parsed.frontmatter.tags);
+  const categories = normalizeTextList(parsed.frontmatter.categories);
 
   return {
     slug,
     title: parsed.frontmatter.title,
     publishedAt: parsed.frontmatter.date,
     publishedLabel: formatPublishedDate(parsed.frontmatter.date),
-    tags: parsed.frontmatter.tags,
-    categories: parsed.frontmatter.categories,
+    tags,
+    categories,
     excerpt: parsed.excerpt,
   };
 }
@@ -58,17 +63,13 @@ async function loadAuthorData(): Promise<HomeAuthorData> {
   const rawProfile = await readFile(authorProfilePath, "utf8");
   const author = JSON.parse(rawProfile) as NormalizedAuthorProfile;
 
-  return {
-    displayName: author.displayName,
-    introduction: author.introduction,
-    headline: author.headline,
-    slogan: author.slogan,
-    location: author.location,
-    occupation: author.occupation,
-    university: author.university,
-    major: author.major,
-    profileTags: author.profileTags,
-    focusAreas: author.focusAreas,
-    avatarUrl: author.avatarUrl,
-  };
+  return mapAuthorProfileToHomeAuthorData(author);
+}
+
+function normalizeTextList(values: readonly string[]): string[] {
+  const normalizedValues = values
+    .map((value) => value.trim())
+    .filter((value) => value.length > 0);
+
+  return Array.from(new Set(normalizedValues));
 }
