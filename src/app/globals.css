@@ -3,6 +3,9 @@
 :root {
   --background: #050510;
   --foreground: #ededed;
+  --article-shell-max: 1360px;
+  --article-shell-padding: clamp(1.5rem, 3vw, 2.5rem);
+  --article-toc-width: 300px;
   --article-surface: rgba(10, 12, 22, 0.56);
   --article-surface-strong: rgba(14, 18, 32, 0.72);
   --article-border: rgba(255, 255, 255, 0.1);
@@ -41,7 +44,7 @@ body {
 .article-view {
   max-width: min(980px, calc(100vw - 2rem));
   margin: 0 auto;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
+  padding: var(--article-shell-padding);
   border: 1px solid var(--article-border);
   border-radius: 32px;
   background: linear-gradient(180deg, var(--article-surface) 0%, rgba(8, 10, 18, 0.74) 100%);
@@ -390,17 +393,22 @@ body {
 
 @media (min-width: 1080px) {
   .article-view {
-    max-width: min(1360px, calc(100vw - 3rem));
+    max-width: min(var(--article-shell-max), calc(100vw - 3rem));
   }
 
   .article-view__layout {
     align-items: start;
-    grid-template-columns: minmax(0, 1fr) 300px;
+    grid-template-columns: minmax(0, 1fr) var(--article-toc-width);
   }
 
   .article-toc__card {
-    position: sticky;
+    position: fixed;
     top: 6.5rem;
+    right: calc(
+      max(1.5rem, (100vw - min(var(--article-shell-max), calc(100vw - 3rem))) / 2) +
+        var(--article-shell-padding)
+    );
+    width: var(--article-toc-width);
     max-height: calc(100vh - 8rem);
     overflow: auto;
   }

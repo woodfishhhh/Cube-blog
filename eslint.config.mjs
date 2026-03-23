@@ -5,6 +5,7 @@ const config = [
   {
     ignores: [
       ".next/**",
+      ".netlify/**",
       "out/**",
       "output/**",
       ".playwright-cli/**",
