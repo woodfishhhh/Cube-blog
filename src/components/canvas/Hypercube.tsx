@@ -67,6 +67,7 @@ export function Hypercube(props: any) {
   }, [camera, size.width, size.height]);
 
   const inwardOffset = splitCenterOffset * 0.9;
+  const isMobile = size.width < 768;
 
   const { position, rotation, scale } = useSpring({
     position: isFocusing
@@ -74,16 +75,16 @@ export function Hypercube(props: any) {
       : mode === "home"
         ? [0, 0, 0]
         : mode === "blog"
-          ? [inwardOffset, 0, 0]
+          ? (isMobile ? [0, 3, 0] : [inwardOffset, 0, 0])
           : mode === "author"
-            ? [-inwardOffset, 0, 0]
+            ? (isMobile ? [0, 3, 0] : [-inwardOffset, 0, 0])
             : mode === "friend"
               ? [0, 2.4, 0]
             : mode === "reading"
-              ? [5, 0, 0]
+              ? (isMobile ? [0, 3.5, 0] : [5, 0, 0])
               : [0, 0, 0],
     rotation: isFocusing ? focusRotation : [0.5, 0.5, 0],
-    scale: mode === "reading" ? 0.5 : 1,
+    scale: mode === "reading" ? 0.5 : (isMobile ? 0.75 : 1),
     config: { mass: 1, tension: 170, friction: 26 },
   });
 
@@ -168,17 +169,21 @@ export function Hypercube(props: any) {
       rotation={rotation as any}
       scale={scale as any}
       onClick={handleClick}
-      onPointerOver={() => {
-        if (!isFocusing) {
-          document.body.style.cursor = "pointer";
+      onPointerOver={(e) => {
+        if (e.pointerType === "mouse") {
+          if (!isFocusing) {
+            document.body.style.cursor = "pointer";
+          }
+          setHover(true);
         }
-        setHover(true);
       }}
-      onPointerOut={() => {
-        if (!isFocusing) {
-          document.body.style.cursor = "auto";
+      onPointerOut={(e) => {
+        if (e.pointerType === "mouse") {
+          if (!isFocusing) {
+            document.body.style.cursor = "auto";
+          }
+          setHover(false);
         }
-        setHover(false);
       }}
       dispose={null}
       {...props}>

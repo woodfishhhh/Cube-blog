@@ -17,7 +17,7 @@ export function PostList({ posts }: { posts: Post[] }) {
         {posts.map((post, i) => (
           <article
             key={post.id}
-            className="group cursor-pointer rounded-xl border border-transparent px-3 py-2 transition-colors hover:border-white/10 hover:bg-white/[0.03]"
+            className="group cursor-pointer rounded-xl border border-transparent px-3 py-2 transition-colors hover:border-white/10 hover:bg-white/[0.03] active:bg-white/[0.05]"
             onClick={() => enterReading(post.id)}>
             <div className="text-xs text-blue-400 mb-1">
               {new Date(post.date).toLocaleDateString()}

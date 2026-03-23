@@ -114,7 +114,7 @@ export function AuthorProfile({ info }: { info: AuthorInfo }) {
               target="_blank"
               rel="noopener noreferrer"
               title="GitHub"
-              className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors duration-500 text-white/50 group">
+              className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-white active:bg-white hover:text-black active:text-black transition-colors duration-500 text-white/50 group">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -122,7 +122,7 @@ export function AuthorProfile({ info }: { info: AuthorInfo }) {
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-4 h-4 text-white/50 group-hover:text-black transition-colors">
+                className="w-4 h-4 text-white/50 group-hover:text-black group-active:text-black transition-colors">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
               </svg>
             </a>
