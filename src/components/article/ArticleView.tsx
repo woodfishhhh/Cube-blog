@@ -1,6 +1,4 @@
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-
+import { renderArticleMarkdown } from "@/lib/content/article-markdown-renderer";
 import type { ArticleData } from "@/lib/content/types";
 
 type ArticleViewProps = {
@@ -9,6 +7,7 @@ type ArticleViewProps = {
 
 export function ArticleView({ article }: ArticleViewProps) {
   const normalizedBody = removeDuplicateTitleHeading(article.body, article.title);
+  const renderedBody = renderArticleMarkdown(normalizedBody);
   const articleTitleId = `article-title-${article.slug}`;
   const metadataItems = [
     { label: "Published", value: article.publishedLabel },
@@ -39,13 +38,15 @@ export function ArticleView({ article }: ArticleViewProps) {
         </div>
       </header>
 
-      <div
-        aria-label={`${article.title} content`}
-        className="article-markdown"
-        role="region"
-        tabIndex={-1}
-      >
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{normalizedBody}</ReactMarkdown>
+      <div className="article-markdown-shell">
+        <article
+          aria-label={`${article.title} content`}
+          className="article-markdown"
+          id="article-container"
+          role="region"
+          tabIndex={-1}
+          dangerouslySetInnerHTML={{ __html: renderedBody }}
+        />
       </div>
     </article>
   );
