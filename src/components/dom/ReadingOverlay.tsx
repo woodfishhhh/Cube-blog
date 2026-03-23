@@ -4,7 +4,8 @@ import { useStore } from "@/store/store";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { Post } from "@/lib/data";
-import { renderArticleMarkdown } from "@/lib/content/article-markdown-renderer";
+import { extractArticleToc, renderArticleMarkdown } from "@/lib/content/article-markdown-renderer";
+import { ArticleToc } from "@/components/article/ArticleToc";
 
 export function ReadingOverlay({ posts }: { posts: Post[] }) {
   const activePostId = useStore((state) => state.activePostId);
@@ -13,6 +14,7 @@ export function ReadingOverlay({ posts }: { posts: Post[] }) {
 
   const post = posts.find((p) => p.id === activePostId);
   const renderedBody = post ? renderArticleMarkdown(post.content) : "";
+  const tocItems = post ? extractArticleToc(post.content) : [];
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -29,7 +31,7 @@ export function ReadingOverlay({ posts }: { posts: Post[] }) {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
-          className="fixed inset-0 z-50 overflow-y-auto bg-[rgba(5,5,16,0.34)] backdrop-blur-sm p-6 md:p-20">
+          className="article-overlay-scroll-root fixed inset-0 z-50 overflow-y-auto bg-[rgba(5,5,16,0.34)] backdrop-blur-sm p-6 md:p-20">
           <button
             onClick={goBlog}
             className="fixed top-8 right-8 text-white/50 hover:text-white transition-colors z-50 text-xl">
@@ -61,13 +63,16 @@ export function ReadingOverlay({ posts }: { posts: Post[] }) {
               </div>
             </header>
 
-            <div className="article-markdown-shell">
-              <article
-                aria-label={`${post.title} content`}
-                className="article-markdown"
-                id="article-container"
-                dangerouslySetInnerHTML={{ __html: renderedBody }}
-              />
+            <div className="article-view__layout">
+              <div className="article-markdown-shell article-view__content">
+                <article
+                  aria-label={`${post.title} content`}
+                  className="article-markdown"
+                  id="article-container"
+                  dangerouslySetInnerHTML={{ __html: renderedBody }}
+                />
+              </div>
+              <ArticleToc items={tocItems} />
             </div>
           </article>
         </motion.div>

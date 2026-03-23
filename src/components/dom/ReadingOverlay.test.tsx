@@ -32,6 +32,8 @@ describe("ReadingOverlay", () => {
     const { container } = render(<ReadingOverlay posts={posts} />);
 
     expect(screen.getByText("Transparent Overlay")).toBeInTheDocument();
+    expect(screen.getByText("文章目录")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Heading" })).toBeInTheDocument();
     expect(container.firstElementChild).toHaveClass("bg-[rgba(5,5,16,0.34)]");
   });
 });
