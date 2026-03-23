@@ -2,7 +2,7 @@
 
 import { useStore } from "@/store/store";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Post } from "@/lib/data";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -14,7 +14,6 @@ export function ReadingOverlay({ posts }: { posts: Post[] }) {
 
   const post = posts.find((p) => p.id === activePostId);
 
-  // Close on Escape
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape" && mode === "reading") goBlog();

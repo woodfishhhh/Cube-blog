@@ -1,7 +1,7 @@
 // @ts-nocheck
 "use client";
 
-import { useRef, useState, useMemo } from "react";
+import { useMemo, useRef, useState } from "react";
 import { ThreeEvent, useFrame, useThree } from "@react-three/fiber";
 import { useSpring, animated } from "@react-spring/three";
 import { Line } from "@react-three/drei";
@@ -37,7 +37,11 @@ export function Hypercube(props: any) {
 
   const meshRef = useRef<any>(null);
   const lineRef = useRef<any>(null);
-  const focusRotationRef = useRef<[number, number, number]>([0.5, 0.5, 0]);
+  const [focusRotation, setFocusRotation] = useState<[number, number, number]>([
+    0.5,
+    0.5,
+    0,
+  ]);
 
   // State from store
   const isFocusing = useStore((state) => state.isFocusing);
@@ -78,7 +82,7 @@ export function Hypercube(props: any) {
             : mode === "reading"
               ? [5, 0, 0]
               : [0, 0, 0],
-    rotation: isFocusing ? focusRotationRef.current : [0.5, 0.5, 0],
+    rotation: isFocusing ? focusRotation : [0.5, 0.5, 0],
     scale: mode === "reading" ? 0.5 : 1,
     config: { mass: 1, tension: 170, friction: 26 },
   });
@@ -144,11 +148,11 @@ export function Hypercube(props: any) {
     e.stopPropagation();
     if (!isFocusing) {
       if (meshRef.current) {
-        focusRotationRef.current = [
+        setFocusRotation([
           meshRef.current.rotation.x,
           meshRef.current.rotation.y,
           meshRef.current.rotation.z,
-        ];
+        ]);
       }
       useStore.getState().goHome();
       setFocusing(true);

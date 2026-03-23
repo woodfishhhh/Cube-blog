@@ -1,0 +1,199 @@
+title: 木鱼
+authorinfo:
+  leftTags:
+    - 🤖️ 数码科技爱好者
+    - 🔍 分享与热心帮助
+    - 🏠 我是鱼唇大学生
+    - 🔨 前端开发正在学
+  rightTags:
+    - 学习算法和音乐 🤝
+    - 脚踏实地行动派 🏃
+    - 团队小组发动机 🧱
+    - 电子音乐制作人 🎧
+  image: https://pic1.imgdb.cn/item/682f3d1658cb8da5c807b704.jpg
+
+contentinfo:
+  sup: 你好，很高兴认识你👋
+  name: 木鱼
+  title: 是一名 学生 / 电子音乐制作人 / 算法爱好者
+  tip: 追求
+  slogan: 源于热爱，去感受
+  mask:
+    - 学习
+    - 生活
+    - 程序
+    - 体验
+
+skills:
+  title: 技能
+  subtitle: 愿得硕果累累日，笑看世间宁
+  tags:
+    - title: Java
+      color: "#ffffff"
+      img: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/26ba17ce013ecde9afc8b373e2fc0b9d_1804318147854602575.jpg
+    - title: Docker
+      color: "#57b6e6"
+      img: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/544b2d982fd5c4ede6630b29d86f3cae_7350393908531420887.png
+    - title: Node
+      color: "#333333"
+      img: https://npm.elemecdn.com/anzhiyu-blog@2.1.1/img/svg/node-logo.svg
+    - title: Vite 8
+      color: "#646cff"
+      img: https://cdn.simpleicons.org/vite/646CFF?viewbox=auto
+    - title: Vitest
+      color: "#fcc72b"
+      img: https://cdn.simpleicons.org/vitest/FCC72B?viewbox=auto
+    - title: Tailwind CSS
+      color: "#06b6d4"
+      img: https://cdn.simpleicons.org/tailwindcss/06B6D4?viewbox=auto
+    - title: Three.js
+      color: "#ffffff"
+      img: https://cdn.simpleicons.org/threedotjs/FFFFFF?viewbox=auto
+    - title: FL Studio
+      color: "#f37c20"
+      img: /asset/image.png
+    - title: C
+      color: "#a8b9cc"
+      img: https://cdn.simpleicons.org/c/A8B9CC?viewbox=auto
+    - title: C++
+      color: "#00599c"
+      img: https://cdn.simpleicons.org/cplusplus/00599C?viewbox=auto
+    - title: Pinia
+      color: "#42b883"
+      img: https://cdn.simpleicons.org/pinia/42B883?viewbox=auto
+    - title: TypeScript
+      color: "#3178c6"
+      img: https://cdn.simpleicons.org/typescript/3178C6?viewbox=auto
+    - title: Python
+      color: "#ffffff"
+      img: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/02c9c621414cc2ca41035d809a4154be_7912546659792951301.png
+    - title: Vue
+      color: "#b8f0ae"
+      img: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/cf23526f451784ff137f161b8fe18d5a_692393069314581413.png
+    - title: CSS3
+      color: "#2c51db"
+      img: https://bu.dusays.com/2022/12/15/639aa3a5c251e.png
+    - title: JS
+      color: "#f7cb4f"
+      img: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/06216e7fddb6704b57cb89be309443f9_7269407781142156006.png
+    - title: HTML
+      color: "#e9572b"
+      img: https://bu.dusays.com/2022/12/15/639aa3a5c241c.png
+    - title: Git
+      color: "#df5b40"
+      img: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/fcc0dbbfe206b4436097a8362d64b558_6981541002497327189.webp
+
+careers:
+  title: 生涯
+  subtitle: 无限进步
+  items:
+    - school: JUFE
+      major: 计算机科学与技术
+      color: "#357ef5"
+    - school: THU（目标）
+      major: 计算机科学与技术
+      color: "#357ef5"
+    - school: PKU（目标）
+      major: 人工智能
+      color: "#357ef5"
+  image: https://bu.dusays.com/2023/04/21/644287166329b.png
+
+personalities:
+  tips: 性格
+  title: 探险家 Adventurer
+  color: "#ac899c"
+  type: ISFP-T
+  image: https://pic1.imgdb.cn/item/683f1fb958cb8da5c829bfa9.png
+  linkText: 16personalities
+  typeLink: https://www.16personalities.com/ch/%E7%BB%93%E6%9E%9C/isfp-t/m/4m0pp3vwk
+  typeName: 探险家 Adventurer
+  myphoto: https://pic1.imgdb.cn/item/683f21e358cb8da5c829c087.jpg
+
+motto:
+  title: 座右铭
+  prefix: 如果没有天赋，
+  content: 那就一直重复
+
+expertise:
+  title: 特长
+  prefix: 喜欢突然冒出一个
+  specialist: PLAN
+  content: 也许有用，但一定
+  level: 好玩
+
+game:
+  - title: 爱好游戏
+    subtitle: CS2
+    img: https://pic1.imgdb.cn/item/683edf4958cb8da5c8293dd4.png
+    box_shadow: "0 12px 28px rgba(53,126,245,.35)"
+    tips_left: 枪法稳一点，心态好一点
+    tips_right: Teamplay
+
+likes:
+  - type: comic
+    tips: 喜欢的影视剧
+    title: 特摄 + 动漫
+    subtips: 一些常看收藏
+    list:
+      - name: 神奇宝贝
+        href: https://www.bilibili.com/bangumi/play/ss47066?spm_id_from=333.337.0.0
+        cover: https://pic1.imgdb.cn/item/683f228258cb8da5c829c0c3.png
+      - name: 工作细胞
+        href: https://www.bilibili.com/bangumi/play/ss37889?spm_id_from=333.337.0.0
+        cover: https://pic1.imgdb.cn/item/683f229b58cb8da5c829c0c4.png
+      - name: 猫和老鼠
+        href: https://www.bilibili.com/bangumi/play/ss357?spm_id_from=333.337.0.0
+        cover: https://pic1.imgdb.cn/item/683f22cd58cb8da5c829c0d2.png
+      - name: 奈克瑟斯奥特曼
+        href: https://www.bilibili.com/bangumi/play/ss38404?spm_id_from=333.337.0.0
+        cover: https://pic1.imgdb.cn/item/683f230058cb8da5c829c0e1.png
+      - name: 泽塔奥特曼
+        href: https://www.bilibili.com/bangumi/play/ss38397?spm_id_from=333.337.0.0
+        cover: https://pic1.imgdb.cn/item/683f237b58cb8da5c829c0fb.png
+  - type: like-technology
+    tips: 关注偏好
+    title: 人工智能 · 编程
+    bg: https://pic1.imgdb.cn/item/683f255c58cb8da5c829c185.png
+    subtips: AI.Coding.Passion!
+  - type: like-music
+    tips: 音乐偏好
+    title: ColorBass · ProgressiveHouse · 凯尔特
+    bg: https://pic1.imgdb.cn/item/683edef758cb8da5c8293dc2.jpg
+    subtips: 跟木鱼一起欣赏更多音乐
+    button: true
+    button_link: https://music.163.com/playlist?id=2290135145&uct2=U2FsdGVkX19AQho4E/Vok7NwUAskwBGv/gvCgXWtR20=
+    button_text: 更多推荐
+
+oneself:
+  map:
+    light: https://pic1.imgdb.cn/item/683f1db158cb8da5c829bea9.png
+    dark: https://pic1.imgdb.cn/item/683f1db158cb8da5c829bea9.png
+  location: 中国，南昌市
+  birthYear: 2006
+  university: 江西财经大学
+  major: 计算机科学与技术
+  occupation: 大一学生
+
+cause:
+  tip: 建站原因
+  title: 为什么写博客
+  content: 记录学习路径，沉淀知识，也把热爱分享给同频的人。
+
+tenyear:
+  tips: 进度
+  title: 大学阶段进度条
+  text: 保持热爱，慢慢变强。
+  start: "2024-09-01"
+  end: "2028-06-30"
+
+award:
+  enable: true
+  description: 感谢每一份支持，都是继续创作的动力。
+  tips: 已收到 {sum} 元支持，真的非常感谢。
+
+rewardList:
+  - name: 赖祥文
+    money: 666
+    time: 1748793600000
+    color: "#f7c948"
+    icon: fas fa-gift

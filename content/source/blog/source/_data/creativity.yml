@@ -1,0 +1,65 @@
+- class_name: 开启创造力
+  creativity_list:
+    - name: Java
+      color: "#fff"
+      icon: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/26ba17ce013ecde9afc8b373e2fc0b9d_1804318147854602575.jpg
+    - name: Docker
+      color: "#57b6e6"
+      icon: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/544b2d982fd5c4ede6630b29d86f3cae_7350393908531420887.png
+    - name: Node
+      color: "#333"
+      icon: https://npm.elemecdn.com/anzhiyu-blog@2.1.1/img/svg/node-logo.svg
+    - name: Vite 8
+      color: "#646cff"
+      icon: https://cdn.simpleicons.org/vite/646CFF?viewbox=auto
+    - name: Vitest
+      color: "#fcc72b"
+      icon: https://cdn.simpleicons.org/vitest/FCC72B?viewbox=auto
+    - name: Tailwind CSS
+      color: "#06b6d4"
+      icon: https://cdn.simpleicons.org/tailwindcss/06B6D4?viewbox=auto
+    - name: Three.js
+      color: "#fff"
+      icon: https://cdn.simpleicons.org/threedotjs/FFFFFF?viewbox=auto
+    - name: FL Studio
+      color: "#f37c20"
+      icon: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%23F37C20'/><path fill='%23fff' d='M42 12v24.2a10 10 0 1 1-6-9.1V18H26v-6h16zm-6 26.6v.6a4 4 0 1 0 4-4h-.6L36 38.6z'/></svg>"
+    - name: C
+      color: "#a8b9cc"
+      icon: https://cdn.simpleicons.org/c/A8B9CC?viewbox=auto
+    - name: C++
+      color: "#00599c"
+      icon: https://cdn.simpleicons.org/cplusplus/00599C?viewbox=auto
+    - name: Pinia
+      color: "#42b883"
+      icon: https://cdn.simpleicons.org/pinia/42B883?viewbox=auto
+    - name: TypeScript
+      color: "#3178c6"
+      icon: https://cdn.simpleicons.org/typescript/3178C6?viewbox=auto
+    - name: Python
+      color: "#fff"
+      icon: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/02c9c621414cc2ca41035d809a4154be_7912546659792951301.png
+    - name: Vite
+      color: "#937df7"
+      icon: https://npm.elemecdn.com/anzhiyu-blog@2.0.8/img/svg/vite-logo.svg
+    - name: Vue
+      color: "#b8f0ae"
+      icon: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/cf23526f451784ff137f161b8fe18d5a_692393069314581413.png
+    - name: React
+      color: "#222"
+      icon: data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K
+    - name: CSS3
+      color: "#2c51db"
+      icon: https://bu.dusays.com/2022/12/15/639aa3a5c251e.png
+    - name: JS
+      color: "#f7cb4f"
+      icon: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/06216e7fddb6704b57cb89be309443f9_7269407781142156006.png
+    - name: HTML
+      color: "#e9572b"
+      icon: https://bu.dusays.com/2022/12/15/639aa3a5c241c.png
+    - name: Git
+      color: "#df5b40"
+      icon: https://upload-bbs.miyoushe.com/upload/2025/07/29/125766904/fcc0dbbfe206b4436097a8362d64b558_6981541002497327189.webp
+    - name: Apifox
+      color: "#e65164"
+      icon: https://bu.dusays.com/2022/11/19/6378d6458c6b6.png

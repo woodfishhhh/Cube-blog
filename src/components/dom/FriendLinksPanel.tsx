@@ -24,7 +24,6 @@ export function FriendLinksPanel({ links }: { links: FriendLink[] }) {
               transition={{ duration: 0.2, delay: index * 0.03 }}
               className="group rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 transition-colors p-4 flex items-start gap-3">
               {item.avatar ? (
-                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={item.avatar}
                   alt={item.name}

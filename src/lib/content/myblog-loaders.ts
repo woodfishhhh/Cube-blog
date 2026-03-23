@@ -2,9 +2,14 @@ import { readdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
 import { formatPublishedDate } from "@/lib/content/date";
+import {
+  getBlogAboutMarkdownPath,
+  getBlogConfigPath,
+  getMyBlogSourceRoot,
+} from "@/lib/content/source-paths";
 
-export const MY_BLOG_DIR = path.resolve(process.cwd(), "..", "MyBlog");
-export const ABOUT_ME_PATH = path.resolve(process.cwd(), "..", "Blog", "source", "about", "index.md");
+export const MY_BLOG_DIR = getMyBlogSourceRoot();
+export const ABOUT_ME_PATH = getBlogAboutMarkdownPath();
 
 export async function getAllMarkdownFiles(dir: string): Promise<string[]> {
   let results: string[] = [];
@@ -74,7 +79,7 @@ export async function getAuthorData() {
     }
 
     // Attempt to read config if markdown is empty or sparse
-    const configPath = path.resolve(process.cwd(), "..", "Blog", "_config.yml");
+    const configPath = getBlogConfigPath();
     let configData: any = {};
     try {
       const configRaw = await readFile(configPath, 'utf8');

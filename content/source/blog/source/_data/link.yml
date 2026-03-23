@@ -1,0 +1,50 @@
+links:
+  - class_name: 友情链接
+    descr: 朋友们的网站
+    type: item
+    link_list:
+      - name: Fomalhaut
+        link: https://fomal.cc/
+        avatar: https://www.woodfishhhh.xyz/images/b9c9d11eb488c00fcbed8c056113cd5.png?_t=1751965222026
+        descr: 我的博客从这里学的
+      - name: Mohao
+        link: https://blog.mohao.me/
+        avatar: https://www.woodfishhhh.xyz/images/b_42269307aa01a6e139e000cb33d42ee3.jpg.jpeg?_t=1751965187830
+        descr: 钟明皓大神
+      - name: Louisdlee
+        link: https://blog.csdn.net/louisdlee/
+        avatar: https://www.woodfishhhh.xyz/images/b_07a423060cfba799e5b0837682c40452.jpg.jpeg?_t=1751965187830
+        descr: 李鑫哥哥
+      - name: 有毒的羊
+        link: https://poisonous-sheep.github.io/
+        avatar: https://www.woodfishhhh.xyz/images/b_75a72dbe4807dafc0c1846ea347ab524.jpg.jpeg?_t=1751965187830
+        descr: 小羊，我的小羊
+      - name: RZpew
+        link: https://rzpew.com/
+        avatar: https://www.woodfishhhh.xyz/images/b_c597f6e35b7ee96d4ec47e4e7605b149.jpg.jpeg?_t=1751965187830
+        descr: T_D8老师
+      - name: 林酒
+        link: https://realfrog.top/
+        avatar: https://www.woodfishhhh.xyz/images/b_737d8997fad998dc37772fd58948cf97.jpg.jpeg?_t=1751965187830
+        descr: 林酒老师
+      - name: 程序设计竞赛协会
+        link: http://47.99.92.213
+        avatar: https://www.woodfishhhh.xyz/images/116983c54294980f75bc7117d81c6d1e.png?_t=1754227079323
+        descr: 江西财经大学程序设计竞赛协会
+      - name: 网络安全协会
+        link: https://csec.jxufe.edu.cn
+        avatar: https://www.woodfishhhh.xyz/images/bfce466bc4f2b2f059482ec4a65e8c53.png?_t=1754227592986
+        descr: 江西财经大学网络安全协会
+      - name: heaven
+        link: https://www.dearheaven.cn/
+        avatar: https://pic-bed.dearheaven.cn/img/touxiang.webp
+        descr: 热爱可抵岁月漫长
+        siteshot: https://pic-bed.dearheaven.cn/img/sitehost.webp
+      - name: woodfish
+        link: https://www.woodfishhhh.xyz/
+        avatar: https://pic1.imgdb.cn/item/682f3d1658cb8da5c807b704.jpg
+        descr: 我喜欢你
+      - name: Junie
+        link: https://juniexd.cn/
+        avatar: https://pic1.imgdb.cn/item/68e8c601c5157e1a886263f9.jpg
+        descr: 保研学长

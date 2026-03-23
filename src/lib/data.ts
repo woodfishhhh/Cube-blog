@@ -2,11 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import yaml from 'js-yaml';
+import {
+  getBlogAboutYamlPath,
+  getBlogLinkYamlPath,
+  getMyBlogSourceRoot,
+} from "@/lib/content/source-paths";
 
-// Paths relative to 3Dblog root
-const MY_BLOG_PATH = path.join(process.cwd(), '../MyBlog');
-const BLOG_ABOUT_PATH = path.join(process.cwd(), '../Blog/source/_data/about.yml');
-const BLOG_LINK_PATH = path.join(process.cwd(), '../Blog/source/_data/link.yml');
+const MY_BLOG_PATH = getMyBlogSourceRoot();
+const BLOG_ABOUT_PATH = getBlogAboutYamlPath();
+const BLOG_LINK_PATH = getBlogLinkYamlPath();
 
 export interface Post {
   id: string;

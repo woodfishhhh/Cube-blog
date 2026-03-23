@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ThreeScene from "@/components/canvas/Scene";
 import { getPosts, getAuthorInfo, getFriendLinks } from "@/lib/data";
-import { NavigationNew } from "@/components/dom/NavigationNew";
-import { ReadingOverlayNew } from "@/components/dom/ReadingOverlayNew";
+import { Navigation } from "@/components/dom/Navigation";
+import { ReadingOverlay } from "@/components/dom/ReadingOverlay";
 import { SlideController } from "@/components/dom/SlideController";
 import { UIOverlay } from "@/components/dom/UIOverlay";
 
@@ -29,7 +29,7 @@ export default async function RootLayout({
       <body
         className={`${inter.className} bg-black text-white overflow-hidden`}>
         <SlideController>
-          <NavigationNew />
+          <Navigation />
 
           <div className="fixed inset-0 w-full h-full z-0">
             <ThreeScene />
@@ -41,7 +41,7 @@ export default async function RootLayout({
             friendLinks={friendLinks}
           />
 
-          <ReadingOverlayNew posts={posts} />
+          <ReadingOverlay posts={posts} />
         </SlideController>
       </body>
     </html>

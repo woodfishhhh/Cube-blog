@@ -1,5 +1,4 @@
 import { access, copyFile, mkdir, opendir, readFile, writeFile } from "node:fs/promises";
-import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -60,17 +59,18 @@ export async function loadDefaultLaunchImportOptions(workspaceRoot = DEFAULT_WOR
   const manifestModulePath = path.resolve(workspaceRoot, "content", "launch-manifest.ts");
   const manifestSource = await readFile(manifestModulePath, "utf8");
   const parsedManifest = parseLaunchManifestModule(manifestSource);
-  const desktopRoot = path.join(os.homedir(), "Desktop");
 
   return {
     workspaceRoot,
     launchPostManifest: parsedManifest.launchPostManifest,
     authorProfileSource: parsedManifest.authorProfileSource,
     sourceRoots: {
-      blog: path.resolve(workspaceRoot, "..", "Blog"),
-      myblog: path.resolve(workspaceRoot, "..", "MyBlog"),
+      blog: path.resolve(workspaceRoot, "content", "source", "blog"),
+      myblog: path.resolve(workspaceRoot, "content", "source", "myblog"),
     },
-    assetSearchRoots: [desktopRoot, path.resolve(workspaceRoot, "..")],
+    assetSearchRoots: [
+      path.resolve(workspaceRoot, "content", "source"),
+    ],
   };
 }
 

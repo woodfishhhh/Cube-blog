@@ -1,19 +1,19 @@
 "use client";
 
 import { useStore } from "@/store/store";
-import { PostListNew } from "./PostListNew";
-import { AuthorProfileNew } from "./AuthorProfileNew";
+import { PostList } from "./PostList";
+import { AuthorProfile } from "./AuthorProfile";
 import { FriendLinksPanel } from "./FriendLinksPanel";
 import { AnimatePresence, motion } from "framer-motion";
-import { FriendLink } from "@/lib/data";
+import { AuthorInfo, FriendLink, Post } from "@/lib/data";
 
 export function UIOverlay({
   posts,
   authorInfo,
   friendLinks,
 }: {
-  posts: any;
-  authorInfo: any;
+  posts: Post[];
+  authorInfo: AuthorInfo;
   friendLinks: FriendLink[];
 }) {
   const mode = useStore((state) => state.mode);
@@ -62,7 +62,7 @@ export function UIOverlay({
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="absolute left-0 top-0 h-screen w-full md:w-1/2 flex items-center p-10 md:pl-20 pointer-events-auto bg-gradient-to-r from-black/80 to-transparent">
             <div className="w-full">
-              <PostListNew posts={posts} />
+              <PostList posts={posts} />
             </div>
           </motion.div>
         )}
@@ -76,7 +76,7 @@ export function UIOverlay({
             transition={{ duration: 0.4, ease: "anticipate" }}
             className="absolute right-0 top-0 h-screen w-full md:w-1/2 flex items-center p-10 md:pr-20 pointer-events-auto bg-gradient-to-l from-black/95 via-black/80 to-transparent">
             <div className="w-full h-full flex items-center justify-center">
-              <AuthorProfileNew info={authorInfo} />
+              <AuthorProfile info={authorInfo} />
             </div>
           </motion.div>
         )}

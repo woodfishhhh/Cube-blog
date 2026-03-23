@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useStore, ViewMode } from "@/store/store";
+import { useStore } from "@/store/store";
 
 export function SlideController({ children }: { children: React.ReactNode }) {
-  const mode = useStore((state) => state.mode);
   const setMode = useStore((state) => state.setMode);
 
   const isAnimating = useRef(false);
