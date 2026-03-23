@@ -1,7 +1,5 @@
-import { formatPublishedDate } from "@/lib/content/date";
-import { loadLaunchPostSource, type LaunchPostSourcePayload, listLaunchPosts } from "@/lib/content/loaders";
-import { parseMarkdownDocument } from "@/lib/content/markdown";
 import type { ArticleData, ContentLookupResult } from "@/lib/content/types";
+import { getMyBlogPosts } from "./myblog-loaders";
 
 export type ArticleRouteParams = {
   slug: string;
@@ -10,37 +8,32 @@ export type ArticleRouteParams = {
 export async function getArticleDataBySlug(
   slug: string,
 ): Promise<ContentLookupResult<ArticleData>> {
-  const result = await loadLaunchPostSource(slug);
-
-  if (!result.ok) {
-    return result;
+  const posts = await getMyBlogPosts();
+  const post = posts.find((p) => p.slug === slug);
+  if (!post) {
+    return { ok: false, reason: "not-found" };
   }
 
   return {
     ok: true,
-    value: mapLaunchPostToArticle(result.value),
+    value: {
+      slug: post.slug,
+      title: post.title,
+      publishedAt: post.publishedAt,
+      publishedLabel: post.publishedLabel,
+      tags: post.tags,
+      categories: post.categories,
+      excerpt: post.excerpt,
+      body: post.content,
+    }
   };
 }
 
-export function getArticleStaticParams(): ArticleRouteParams[] {
-  return listLaunchPosts().map((entry) => ({ slug: entry.slug }));
+export async function getArticleStaticParams(): Promise<ArticleRouteParams[]> {
+  const posts = await getMyBlogPosts();
+  return posts.map((entry) => ({ slug: entry.slug }));
 }
 
-export function getAllArticleSlugs(): ArticleRouteParams[] {
-  return getArticleStaticParams();
-}
-
-function mapLaunchPostToArticle(payload: LaunchPostSourcePayload): ArticleData {
-  const parsed = parseMarkdownDocument(payload.raw);
-
-  return {
-    slug: payload.entry.slug,
-    title: parsed.frontmatter.title,
-    publishedAt: parsed.frontmatter.date,
-    publishedLabel: formatPublishedDate(parsed.frontmatter.date),
-    tags: parsed.frontmatter.tags,
-    categories: parsed.frontmatter.categories,
-    excerpt: parsed.excerpt,
-    body: parsed.body,
-  };
+export async function getAllArticleSlugs(): Promise<ArticleRouteParams[]> {
+  return await getArticleStaticParams();
 }
