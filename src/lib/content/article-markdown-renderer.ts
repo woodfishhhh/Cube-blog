@@ -4,6 +4,12 @@ import type Renderer from "markdown-it/lib/renderer.mjs";
 import type Token from "markdown-it/lib/token.mjs";
 import hljs from "highlight.js";
 
+export type ArticleTocItem = {
+  id: string;
+  level: number;
+  text: string;
+};
+
 let markdownRenderer: MarkdownIt | null = null;
 
 export function renderArticleMarkdown(markdown: string) {
@@ -12,6 +18,38 @@ export function renderArticleMarkdown(markdown: string) {
   }
 
   return markdownRenderer.render(markdown.trim());
+}
+
+export function extractArticleToc(markdown: string): ArticleTocItem[] {
+  if (!markdownRenderer) {
+    markdownRenderer = createMarkdownRenderer();
+  }
+
+  const tokens = markdownRenderer.parse(markdown.trim(), {});
+  const toc: ArticleTocItem[] = [];
+
+  for (let index = 0; index < tokens.length; index += 1) {
+    const token = tokens[index];
+
+    if (token.type !== "heading_open") {
+      continue;
+    }
+
+    const level = Number(token.tag.replace("h", ""));
+    const inlineToken = tokens[index + 1];
+
+    if (!inlineToken || inlineToken.type !== "inline" || level < 2 || level > 4) {
+      continue;
+    }
+
+    toc.push({
+      id: createHeadingId(inlineToken.content),
+      level,
+      text: inlineToken.content,
+    });
+  }
+
+  return toc;
 }
 
 function createMarkdownRenderer() {
