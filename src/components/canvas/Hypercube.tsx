@@ -38,9 +38,7 @@ export function Hypercube(props: any) {
   const meshRef = useRef<any>(null);
   const lineRef = useRef<any>(null);
   const [focusRotation, setFocusRotation] = useState<[number, number, number]>([
-    0.5,
-    0.5,
-    0,
+    0.5, 0.5, 0,
   ]);
 
   // State from store
@@ -75,16 +73,22 @@ export function Hypercube(props: any) {
       : mode === "home"
         ? [0, 0, 0]
         : mode === "blog"
-          ? (isMobile ? [0, 3, 0] : [inwardOffset, 0, 0])
+          ? isMobile
+            ? [0, 3, 0]
+            : [inwardOffset, 0, 0]
           : mode === "author"
-            ? (isMobile ? [0, 3, 0] : [-inwardOffset, 0, 0])
+            ? isMobile
+              ? [0, 3, 0]
+              : [-inwardOffset, 0, 0]
             : mode === "friend"
               ? [0, 2.4, 0]
-            : mode === "reading"
-              ? (isMobile ? [0, 3.5, 0] : [5, 0, 0])
-              : [0, 0, 0],
+              : mode === "reading"
+                ? isMobile
+                  ? [0, 3.5, 0]
+                  : [5, 0, 0]
+                : [0, 0, 0],
     rotation: isFocusing ? focusRotation : [0.5, 0.5, 0],
-    scale: mode === "reading" ? 0.5 : (isMobile ? 0.75 : 1),
+    scale: mode === "reading" ? 0.5 : isMobile ? 0.75 : 1,
     config: { mass: 1, tension: 170, friction: 26 },
   });
 

@@ -7,6 +7,7 @@ import { Preload, OrbitControls } from "@react-three/drei";
 import { Hypercube } from "./Hypercube";
 import { StarField } from "./StarField";
 import { useStore } from "@/store/store";
+import { CAMERA_INTRO_DURATION, getCameraIntroPose } from "./camera-intro";
 import * as THREE from "three";
 
 function CameraRig() {
@@ -14,11 +15,17 @@ function CameraRig() {
   const mode = useStore((state) => state.mode);
   const isFocusing = useStore((state) => state.isFocusing);
   const smoothedPointer = React.useRef(new THREE.Vector2(0, 0));
+  const introStartTime = React.useRef<number | null>(null);
+  const introCompleted = React.useRef(false);
 
   useFrame((state, delta) => {
     // If we are in focus mode, DO NOT force the camera back to a hardcoded position!
     // The OrbitControls will handle camera position and rotation.
     if (isFocusing) return;
+
+    if (introStartTime.current === null) {
+      introStartTime.current = state.clock.elapsedTime;
+    }
 
     // Smooth camera movement
     const targetPos = new THREE.Vector3(0, 0, 10);
@@ -29,6 +36,25 @@ function CameraRig() {
     if (mode === "author") targetPos.set(0, 0, 12);
     if (mode === "friend") targetPos.set(0, 0, 12);
     if (mode === "reading") targetPos.set(0, 0, 15); // Pull back
+
+    if (!introCompleted.current && introStartTime.current !== null) {
+      const introProgress =
+        (state.clock.elapsedTime - introStartTime.current) / CAMERA_INTRO_DURATION;
+      const introPose = getCameraIntroPose(
+        introProgress,
+        [targetPos.x, targetPos.y, targetPos.z],
+        [targetLook.x, targetLook.y, targetLook.z],
+      );
+
+      camera.position.set(...introPose.position);
+      camera.lookAt(...introPose.lookAt);
+
+      if (introPose.isComplete) {
+        introCompleted.current = true;
+      }
+
+      return;
+    }
 
     // Gentle parallax sway so the camera follows pointer with subtle motion.
     smoothedPointer.current.lerp(state.pointer, 2.2 * delta);

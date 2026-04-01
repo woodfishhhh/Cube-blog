@@ -1,0 +1,64 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [ main ]   # 如果默认分支是 master，改为 master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 如果项目需要构建（如 Vue/React），保留以下三步；否则删除
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      # 打包构建产物（如果是纯静态，直接打包整个项目，但要排除 .git .github node_modules）
+      - name: Package artifacts
+        run: |
+          # 如果存在 dist 目录，说明是构建后的项目
+          if [ -d "dist" ]; then
+            cd dist && zip -r ../deploy.zip ./*
+          elif [ -d ".output/public" ]; then
+            cd .output/public && zip -r ../../deploy.zip ./*
+          else
+            # 纯静态项目，打包所有文件，排除不需要的目录
+            zip -r deploy.zip ./* -x ".git/*" ".github/*" "node_modules/*"
+          fi
+
+      - name: Upload zip to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "deploy.zip"
+          target: ${{ secrets.DEPLOY_DIR }}
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ${{ secrets.DEPLOY_DIR }}
+            shopt -s extglob
+            rm -rf !(deploy.zip)
+            unzip -o deploy.zip
+            rm -f deploy.zip
+            chown -R www:www ${{ secrets.DEPLOY_DIR }}
+            chmod -R 755 ${{ secrets.DEPLOY_DIR }}
+            # 重载 Nginx（如果 Nginx 路径不同请修改）
+            nginx -s reload

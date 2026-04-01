@@ -72,9 +72,17 @@ export function UIOverlay({
         {mode === "blog" && (
           <motion.div
             key="blog"
-            initial={isMobile ? { opacity: 0, y: 50, x: 0 } : { opacity: 0, x: -100, y: 0 }}
+            initial={
+              isMobile
+                ? { opacity: 0, y: 50, x: 0 }
+                : { opacity: 0, x: -100, y: 0 }
+            }
             animate={{ opacity: 1, x: 0, y: 0 }}
-            exit={isMobile ? { opacity: 0, y: 50, x: 0 } : { opacity: 0, x: -100, y: 0 }}
+            exit={
+              isMobile
+                ? { opacity: 0, y: 50, x: 0 }
+                : { opacity: 0, x: -100, y: 0 }
+            }
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="absolute left-0 bottom-0 md:top-0 h-[65vh] md:h-screen w-full md:w-1/2 flex items-start md:items-center p-6 pt-10 md:p-10 md:pl-20 pointer-events-auto bg-gradient-to-t md:bg-gradient-to-r from-black/95 via-black/80 md:via-black/40 to-transparent">
             <div className="w-full h-full flex flex-col">
@@ -86,9 +94,17 @@ export function UIOverlay({
         {mode === "author" && (
           <motion.div
             key="author"
-            initial={isMobile ? { opacity: 0, y: 50, x: 0 } : { opacity: 0, x: 100, y: 0 }}
+            initial={
+              isMobile
+                ? { opacity: 0, y: 50, x: 0 }
+                : { opacity: 0, x: 100, y: 0 }
+            }
             animate={{ opacity: 1, x: 0, y: 0 }}
-            exit={isMobile ? { opacity: 0, y: 50, x: 0 } : { opacity: 0, x: 100, y: 0 }}
+            exit={
+              isMobile
+                ? { opacity: 0, y: 50, x: 0 }
+                : { opacity: 0, x: 100, y: 0 }
+            }
             transition={{ duration: 0.4, ease: "anticipate" }}
             className="absolute right-0 bottom-0 md:top-0 h-[68vh] md:h-screen w-full md:w-1/2 flex items-start md:items-center p-6 pt-10 md:p-10 md:pr-20 pointer-events-auto bg-gradient-to-t md:bg-gradient-to-l from-black/95 via-black/80 md:via-black/40 to-transparent">
             <div className="w-full h-full flex items-center justify-center">

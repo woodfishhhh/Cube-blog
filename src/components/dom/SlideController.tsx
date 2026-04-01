@@ -9,6 +9,20 @@ export function SlideController({ children }: { children: React.ReactNode }) {
   const isAnimating = useRef(false);
 
   useEffect(() => {
+    const getScrollBehavior = (behavior: ScrollBehavior = "smooth") =>
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : behavior;
+
+    const scrollElement = (
+      element: HTMLElement,
+      top: number,
+      behavior: ScrollBehavior = "smooth",
+    ) => {
+      element.scrollBy({ top, behavior: getScrollBehavior(behavior) });
+    };
+
     const handleWheel = (e: WheelEvent) => {
       // Ignore if currently focusing on 3D or reading a post
       if (
@@ -24,7 +38,8 @@ export function SlideController({ children }: { children: React.ReactNode }) {
       if (currentMode === "friend") {
         const friendScroll = document.getElementById("friend-links-container");
         if (friendScroll) {
-          friendScroll.scrollTop += e.deltaY;
+          e.preventDefault();
+          scrollElement(friendScroll, e.deltaY);
           return;
         }
       }
@@ -41,8 +56,8 @@ export function SlideController({ children }: { children: React.ReactNode }) {
                 isAnimating.current = false;
               }, 1200);
             } else if (!e.composedPath().includes(list)) {
-              // Scroll the list manually if hovered outside
-              list.scrollTop += e.deltaY;
+              // Preserve the same smooth feel even when the wheel starts outside the list.
+              scrollElement(list, e.deltaY);
             }
             return;
           }
@@ -54,7 +69,7 @@ export function SlideController({ children }: { children: React.ReactNode }) {
           );
           if (authorScroll) {
             if (!e.composedPath().includes(authorScroll)) {
-              authorScroll.scrollTop += e.deltaY;
+              scrollElement(authorScroll, e.deltaY);
             }
             return;
           }
@@ -95,7 +110,8 @@ export function SlideController({ children }: { children: React.ReactNode }) {
       if (currentMode === "friend") {
         const friendScroll = document.getElementById("friend-links-container");
         if (friendScroll) {
-          friendScroll.scrollTop += diff;
+          e.preventDefault();
+          scrollElement(friendScroll, diff, "auto");
           touchStartY = touchEndY;
           return;
         }
@@ -113,7 +129,7 @@ export function SlideController({ children }: { children: React.ReactNode }) {
                 isAnimating.current = false;
               }, 1200);
             } else if (!e.composedPath().includes(list)) {
-              list.scrollTop += diff;
+              scrollElement(list, diff, "auto");
               touchStartY = e.touches[0].clientY;
             }
             return;
@@ -126,7 +142,7 @@ export function SlideController({ children }: { children: React.ReactNode }) {
           );
           if (authorScroll) {
             if (!e.composedPath().includes(authorScroll)) {
-              authorScroll.scrollTop += diff;
+              scrollElement(authorScroll, diff, "auto");
               touchStartY = e.touches[0].clientY;
             }
             return;
@@ -146,9 +162,9 @@ export function SlideController({ children }: { children: React.ReactNode }) {
       }
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     return () => {
       window.removeEventListener("wheel", handleWheel);

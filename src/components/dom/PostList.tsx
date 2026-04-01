@@ -32,3 +32,4 @@ export function PostList({ posts }: { posts: Post[] }) {
     </div>
   );
 }
+
