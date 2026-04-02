@@ -4,7 +4,12 @@ import { useStore } from "@/store/store";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { Post } from "@/lib/data";
-import { extractArticleToc, renderArticleMarkdown } from "@/lib/content/article-markdown-renderer";
+import { extractArticleToc } from "@/lib/content/article-markdown-renderer";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeSlug from "rehype-slug";
+import rehypeHighlight from "rehype-highlight";
 import { ArticleToc } from "@/components/article/ArticleToc";
 
 export function ReadingOverlay({ posts }: { posts: Post[] }) {
@@ -13,7 +18,6 @@ export function ReadingOverlay({ posts }: { posts: Post[] }) {
   const goBlog = useStore((state) => state.goBlog);
 
   const post = posts.find((p) => p.id === activePostId);
-  const renderedBody = post ? renderArticleMarkdown(post.content) : "";
   const tocItems = post ? extractArticleToc(post.content) : [];
 
   useEffect(() => {
@@ -65,12 +69,18 @@ export function ReadingOverlay({ posts }: { posts: Post[] }) {
 
             <div className="article-view__layout">
               <div className="article-markdown-shell article-view__content">
-                <article
+                <div
                   aria-label={`${post.title} content`}
                   className="article-markdown"
                   id="article-container"
-                  dangerouslySetInnerHTML={{ __html: renderedBody }}
-                />
+                >
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[rehypeRaw, rehypeSlug, rehypeHighlight]}
+                  >
+                    {post.content}
+                  </ReactMarkdown>
+                </div>
               </div>
               <ArticleToc items={tocItems} />
             </div>

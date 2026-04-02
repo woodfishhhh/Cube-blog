@@ -1,4 +1,9 @@
-import { extractArticleToc, renderArticleMarkdown } from "@/lib/content/article-markdown-renderer";
+import { extractArticleToc } from "@/lib/content/article-markdown-renderer";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeSlug from "rehype-slug";
+import rehypeHighlight from "rehype-highlight";
 import { ArticleToc } from "./ArticleToc";
 import type { ArticleData } from "@/lib/content/types";
 
@@ -8,7 +13,6 @@ type ArticleViewProps = {
 
 export function ArticleView({ article }: ArticleViewProps) {
   const normalizedBody = removeDuplicateTitleHeading(article.body, article.title);
-  const renderedBody = renderArticleMarkdown(normalizedBody);
   const tocItems = extractArticleToc(normalizedBody);
   const articleTitleId = `article-title-${article.slug}`;
   const metadataItems = [
@@ -42,14 +46,20 @@ export function ArticleView({ article }: ArticleViewProps) {
 
       <div className="article-view__layout">
         <div className="article-markdown-shell article-view__content">
-          <article
+          <div
             aria-label={`${article.title} content`}
             className="article-markdown"
             id="article-container"
             role="region"
             tabIndex={-1}
-            dangerouslySetInnerHTML={{ __html: renderedBody }}
-          />
+          >
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw, rehypeSlug, rehypeHighlight]}
+            >
+              {normalizedBody}
+            </ReactMarkdown>
+          </div>
         </div>
         <ArticleToc items={tocItems} />
       </div>
