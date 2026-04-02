@@ -1,4 +1,4 @@
-name: Deploy Next.js to CentOS
+name: Deploy Next.js to Ubuntu
 
 on:
   push:
@@ -23,12 +23,12 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
-      # 只打包生产必需文件
+      # 只打包生产运行必需文件
       - name: Package build files
-        run: zip -r deploy.zip .next public package.json package-lock.json
+        run: zip -r deploy.zip .next public content package.json package-lock.json next.config.ts
 
       # 上传到服务器
-      - name: Upload to CentOS
+      - name: Upload to Ubuntu
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -45,15 +45,21 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            mkdir -p ${{ secrets.DEPLOY_DIR }}
             cd ${{ secrets.DEPLOY_DIR }}
+
+            # 清理旧产物，避免残留文件影响运行
+            rm -rf .next public content package.json package-lock.json next.config.ts
+
             unzip -o deploy.zip
             rm -f deploy.zip
 
             # 安装生产依赖
-            npm ci --only=production
+            npm ci --omit=dev
 
             # PM2 重启/启动 Next.js
             pm2 restart 3dblog || pm2 start npm --name "3dblog" -- start
+            pm2 save
 
-            # 权限（CentOS 通用）
+            # 权限（Ubuntu 通用）
             chmod -R 755 ${{ secrets.DEPLOY_DIR }}
