@@ -85,7 +85,7 @@ export function UIOverlay({
             }
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="absolute left-0 bottom-0 md:top-0 h-[65vh] md:h-screen w-full md:w-1/2 flex items-start md:items-center p-6 pt-10 md:p-10 md:pl-20 pointer-events-auto bg-gradient-to-t md:bg-gradient-to-r from-black/95 via-black/80 md:via-black/40 to-transparent">
-            <div className="w-full h-full flex flex-col">
+            <div className="w-full h-full flex flex-col justify-center">
               <PostList posts={posts} />
             </div>
           </motion.div>
