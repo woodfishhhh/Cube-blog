@@ -5,9 +5,8 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,18 +23,38 @@ jobs:
         run: npm run build
         timeout-minutes: 15
 
-      - name: Package build files
+      - name: Create deployment package
         run: |
-          cd /github/workspace
-          zip -r deploy.zip .next public package.json package-lock.json next.config.ts
+          mkdir deploy-package
+          cp -r .next public content package.json package-lock.json next.config.ts deploy-package/
+          cd deploy-package
+          # 最小化打包，只传必要文件
+          tar --sort=name --mtime="@0" --owner=0 --group=0 --numeric-owner -czf ../deploy.tar.gz .
 
-      - name: Upload zip to VPS
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deploy-package
+          path: deploy.tar.gz
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: deploy-package
+          path: ./
+
+      - name: Deploy to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "deploy.zip"
+          source: "deploy.tar.gz"
           target: "${{ secrets.DEPLOY_DIR }}/"
           timeout: 10m
 
@@ -48,7 +67,7 @@ jobs:
           timeout: 5m
           script: |
             cd ${{ secrets.DEPLOY_DIR }}
-            unzip -o deploy.zip && rm -f deploy.zip
+            tar -xzf deploy.tar.gz && rm -f deploy.tar.gz
             chmod -R 755 .
             pm2 restart 3dblog || pm2 start npm --name "3dblog" -- start
             pm2 save
