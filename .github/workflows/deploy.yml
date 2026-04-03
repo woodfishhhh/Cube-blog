@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,12 +22,13 @@ jobs:
 
       - name: Build Next.js
         run: npm run build
+        timeout-minutes: 15
 
-      # 只打包生产运行必需文件
+      # 打包构建产物
       - name: Package build files
-        run: zip -r deploy.zip .next public content package.json package-lock.json next.config.ts
+        run: zip -r deploy.zip .next public package.json package-lock.json next.config.ts
 
-      # 上传到服务器
+      # 上传到 Ubuntu
       - name: Upload to Ubuntu
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -37,7 +38,7 @@ jobs:
           source: "deploy.zip"
           target: ${{ secrets.DEPLOY_DIR }}
 
-      # 服务器部署（无 Nginx，纯 Next.js）
+      # 解压 & 重启 Next.js
       - name: Deploy & Restart
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -48,18 +49,29 @@ jobs:
             mkdir -p ${{ secrets.DEPLOY_DIR }}
             cd ${{ secrets.DEPLOY_DIR }}
 
-            # 清理旧产物，避免残留文件影响运行
+            # 清理旧构建（保留 node_modules 如果存在）
             rm -rf .next public content package.json package-lock.json next.config.ts
 
+            # 解压新构建
             unzip -o deploy.zip
             rm -f deploy.zip
 
-            # 安装生产依赖
-            npm ci --omit=dev
+            # 安装依赖并启动（如果 node_modules 被清理了）
+            npm ci --omit=dev 2>/dev/null || npm ci
 
-            # PM2 重启/启动 Next.js
+            # PM2 重启 Next.js
             pm2 restart 3dblog || pm2 start npm --name "3dblog" -- start
             pm2 save
 
-            # 权限（Ubuntu 通用）
+            # Ubuntu 上确保权限正确
+            chmod -R 755 ${{ secrets.DEPLOY_DIR }}
+
+      # Ubuntu 上最终权限
+      - name: Fix permissions
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
             chmod -R 755 ${{ secrets.DEPLOY_DIR }}
