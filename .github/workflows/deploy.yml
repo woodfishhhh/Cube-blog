@@ -1,4 +1,4 @@
-name: Deploy Next.js to Ubuntu
+name: Deploy Next.js to VPS
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,56 +22,26 @@ jobs:
 
       - name: Build Next.js
         run: npm run build
-        timeout-minutes: 15
+        timeout-minutes: 10
 
-      # 打包构建产物
-      - name: Package build files
-        run: zip -r deploy.zip .next public package.json package-lock.json next.config.ts
-
-      # 上传到 Ubuntu
-      - name: Upload to Ubuntu
+      - name: Deploy to VPS via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "deploy.zip"
+          source: ".next,public,package.json,package-lock.json,next.config.ts"
           target: ${{ secrets.DEPLOY_DIR }}
+          strip_components: 0
 
-      # 解压 & 重启 Next.js
-      - name: Deploy & Restart
+      - name: Restart PM2
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          timeout: 5m
           script: |
-            mkdir -p ${{ secrets.DEPLOY_DIR }}
-            cd ${{ secrets.DEPLOY_DIR }}
-
-            # 清理旧构建（保留 node_modules 如果存在）
-            rm -rf .next public content package.json package-lock.json next.config.ts
-
-            # 解压新构建
-            unzip -o deploy.zip
-            rm -f deploy.zip
-
-            # 安装依赖并启动（如果 node_modules 被清理了）
-            npm ci --omit=dev 2>/dev/null || npm ci
-
-            # PM2 重启 Next.js
+            chmod -R 755 ${{ secrets.DEPLOY_DIR }}
             pm2 restart 3dblog || pm2 start npm --name "3dblog" -- start
             pm2 save
-
-            # Ubuntu 上确保权限正确
-            chmod -R 755 ${{ secrets.DEPLOY_DIR }}
-
-      # Ubuntu 上最终权限
-      - name: Fix permissions
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            chmod -R 755 ${{ secrets.DEPLOY_DIR }}
