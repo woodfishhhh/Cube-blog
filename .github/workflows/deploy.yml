@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,19 +22,24 @@ jobs:
 
       - name: Build Next.js
         run: npm run build
-        timeout-minutes: 10
+        timeout-minutes: 15
 
-      - name: Deploy to VPS via SCP
+      - name: Package build files
+        run: |
+          cd /github/workspace
+          zip -r deploy.zip .next public package.json package-lock.json next.config.ts
+
+      - name: Upload zip to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: ".next,public,package.json,package-lock.json,next.config.ts"
-          target: ${{ secrets.DEPLOY_DIR }}
-          strip_components: 0
+          source: "deploy.zip"
+          target: "${{ secrets.DEPLOY_DIR }}/"
+          timeout: 10m
 
-      - name: Restart PM2
+      - name: Extract and restart
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -42,6 +47,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           timeout: 5m
           script: |
-            chmod -R 755 ${{ secrets.DEPLOY_DIR }}
+            cd ${{ secrets.DEPLOY_DIR }}
+            unzip -o deploy.zip && rm -f deploy.zip
+            chmod -R 755 .
             pm2 restart 3dblog || pm2 start npm --name "3dblog" -- start
             pm2 save
