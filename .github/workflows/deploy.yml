@@ -5,8 +5,9 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,32 +24,20 @@ jobs:
         run: npm run build
         timeout-minutes: 15
 
-      - name: Create deployment package
+      - name: Package build files
         run: |
-          mkdir deploy-package
-          cp -r .next public content package.json package-lock.json next.config.ts deploy-package/
-          cd deploy-package
-          # 最小化打包，只传必要文件
-          tar --sort=name --mtime="@0" --owner=0 --group=0 --numeric-owner -czf ../deploy.tar.gz .
+          tar --exclude='.next/cache' \
+              --exclude='.next/turbo' \
+              --exclude='.next/server/middleware-manifest.json' \
+              --exclude='.next/server/next-font-manifest.json' \
+              --exclude='.next/server/third-party-manifest.json' \
+              --exclude='.next/**/*.map' \
+              --exclude='node_modules' \
+              --exclude='.git' \
+              --exclude='*.log' \
+              -czf deploy.tar.gz .next public content package.json package-lock.json next.config.ts
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: deploy-package
-          path: deploy.tar.gz
-          retention-days: 1
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: deploy-package
-          path: ./
-
-      - name: Deploy to VPS
+      - name: Deploy to VPS via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
