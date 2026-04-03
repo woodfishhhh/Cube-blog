@@ -17,46 +17,34 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Next.js
-        run: npm run build
-        timeout-minutes: 15
-
-      - name: Package build files
-        run: |
-          tar --exclude='.next/cache' \
-              --exclude='.next/turbo' \
-              --exclude='.next/server/middleware-manifest.json' \
-              --exclude='.next/server/next-font-manifest.json' \
-              --exclude='.next/server/third-party-manifest.json' \
-              --exclude='.next/**/*.map' \
-              --exclude='node_modules' \
-              --exclude='.git' \
-              --exclude='*.log' \
-              -czf deploy.tar.gz .next public content package.json package-lock.json next.config.ts
-
-      - name: Deploy to VPS via SCP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "deploy.tar.gz"
-          target: "${{ secrets.DEPLOY_DIR }}/"
-          timeout: 10m
-
-      - name: Extract and restart
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          timeout: 5m
+          timeout: 15m
           script: |
+            set -e
             cd ${{ secrets.DEPLOY_DIR }}
-            tar -xzf deploy.tar.gz && rm -f deploy.tar.gz
+
+            # 如果不是 git 仓库，先 clone
+            if [ ! -d ".git" ]; then
+              git clone https://github.com/woodfishhhh/Cube-blog.git .
+            else
+              git fetch origin main
+              git reset --hard origin/main
+            fi
+
+            # 配置 git
+            git config core.fileMode false 2>/dev/null || true
+            git config pull.rebase false 2>/dev/null || true
+
+            # 安装依赖并构建
+            npm ci
+            npm run build
+
+            # 重启
             chmod -R 755 .
             pm2 restart 3dblog || pm2 start npm --name "3dblog" -- start
             pm2 save
